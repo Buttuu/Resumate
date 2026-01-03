@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ResuMate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>ResuMate</h1>
+      <h5>AI Powered Resume Analyser</h5>
+      <div class="subtitle">
+        <span>🎯 ATS Score</span>
+        <span>🔍 Skill Gap</span>
+        <span>✨ Smart Suggestions</span>
+      </div>
+    </div>
+
+    <div class="upload-section">
+      <form id="resumeForm" class="form-grid">
+        <div class="file-upload-wrapper">
+          <input type="file" id="resumeFile" name="resume" accept=".pdf" required />
+          <div class="upload-icon">📄</div>
+          <strong>Upload your resume here</strong>
+          <div class="file-name" id="fileName"></div>
+        </div>
+
+        <select name="role" required>
+          <option value="">Select Target Role</option>
+          <!-- <option>Web Developer</option>
+          <option>Software Engineer</option>
+          <option>Data Analyst</option>
+          <option>UI/UX Designer</option> -->
+          <option>Web Developer</option>
+          <option>Frontend Developer</option>
+          <option>Backend Developer</option>
+          <option>Full Stack Developer</option>
+          <option>Software Engineer</option>
+          <option>Mobile App Developer</option>
+
+          <!-- Data & AI -->
+          <option>Data Analyst</option>
+          <option>Data Scientist</option>
+          <option>Machine Learning Engineer</option>
+          <option>AI Engineer</option>
+
+          <!-- Design -->
+          <option>UI/UX Designer</option>
+          <option>Product Designer</option>
+          <option>Graphic Designer</option>
+
+          <!-- Cloud & DevOps -->
+          <option>DevOps Engineer</option>
+          <option>Cloud Engineer</option>
+
+          <!-- Security & QA -->
+          <option>Cyber Security Analyst</option>
+          <option>QA Engineer</option>
+
+          <!-- Management -->
+          <option>Product Manager</option>
+          <option>Project Manager</option>
+        </select>
+
+        <button class="analyze-btn" type="submit">
+          Analyze Resume
+        </button>
+      </form>
+    </div>
+
+    <div class="loader-wrapper" id="loader">
+      <div class="loader">
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+      </div>
+      <div class="loader-text">Analyzing your resume...</div>
+    </div>
+
+    <div class="results" id="results">
+      <div class="score-section">
+        <div class="score-circle">
+          <svg>
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#5865f2;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <circle class="score-bg" cx="90" cy="90" r="85"></circle>
+            <circle class="score-progress" cx="90" cy="90" r="85" id="progressCircle"></circle>
+          </svg>
+          <div class="score-text" id="scoreText">0%</div>
+        </div>
+        <div class="score-label">
+          ATS Compatibility Score (<span id="matchPercent">0%</span>)
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>✅ Matched Skills</h3>
+          <div class="tags" id="matchedSkills"></div>
+        </div>
+
+        <div class="info-card">
+          <h3>⚠ Missing Skills</h3>
+          <div class="tags" id="missingSkills"></div>
+        </div>
+
+        <div class="info-card" style="grid-column:1/-1">
+          <h3>💡 Suggestions</h3>
+          <ul class="suggestions-list" id="suggestions"></ul>
+        </div>
+      </div>
+
+      <button
+        id="downloadPdf"
+        type="button"
+        class="analyze-btn"
+        style="display:none; margin-top:40px;"
+      >
+        📥 Download ATS Report (PDF)
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
