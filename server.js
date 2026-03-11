@@ -76,7 +76,7 @@ Return ONLY valid JSON.
           }
         ],
         temperature: 0.2,
-        max_tokens: 692
+        max_tokens: 320
       })
     }
   );
@@ -141,4 +141,5 @@ app.listen(PORT, () => {
   console.log("Loaded API Key:", process.env.OPENROUTER_API_KEY);
   
 });
+
 
