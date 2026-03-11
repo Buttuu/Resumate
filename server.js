@@ -64,7 +64,7 @@ Return ONLY valid JSON.
         "X-Title": "ResuMate"
       },
       body: JSON.stringify({
-        model: "openai/gpt-4o",
+        model: "meta-llama/llama-4-scout",
         messages: [
           {
             role: "system",
@@ -76,7 +76,7 @@ Return ONLY valid JSON.
           }
         ],
         temperature: 0.2,
-        max_tokens: 320
+        max_tokens: 1500
       })
     }
   );
@@ -141,5 +141,6 @@ app.listen(PORT, () => {
   console.log("Loaded API Key:", process.env.OPENROUTER_API_KEY);
   
 });
+
 
 
