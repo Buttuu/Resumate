@@ -2,131 +2,223 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ResuMate</title>
+  <title>ResuMate — AI Resume Analyser</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  
 </head>
 <body>
 
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+  <div class="noise"></div>
+
   <div class="container">
-    <div class="header">
-      <h1>ResuMate</h1>
-      <h5>AI Powered Resume Analyser</h5>
-      <div class="subtitle">
-        <span>🎯 ATS Score</span>
-        <span>🔍 Skill Gap</span>
-        <span>✨ Smart Suggestions</span>
-      </div>
-    </div>
 
-    <div class="upload-section">
-      <form id="resumeForm" class="form-grid">
-        <div class="file-upload-wrapper">
+    <header class="header">
+      <div class="logo-badge">
+        <span class="logo-dot"></span>AI-Powered · Resume Intelligence
+      </div>
+      <h1>Resu<em>Mate</em></h1>
+      <p class="tagline">Drop your resume. Land your dream job.</p>
+      <div class="pills">
+        <span class="pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          ATS Score
+        </span>
+        <span class="pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Skill Gap Analysis
+        </span>
+        <span class="pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Smart Suggestions
+        </span>
+      </div>
+    </header>
+
+    <section class="upload-card" id="uploadSection">
+      <form id="resumeForm">
+
+        <div class="drop-zone" id="dropZone">
           <input type="file" id="resumeFile" name="resume" accept=".pdf" required />
-          <div class="upload-icon">📄</div>
-          <strong>Upload your resume here</strong>
-          <div class="file-name" id="fileName"></div>
+          <div class="drop-inner">
+            <div class="file-icon-wrap">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="12" y1="18" x2="12" y2="12"/>
+                <line x1="9" y1="15" x2="15" y2="15"/>
+              </svg>
+            </div>
+            <p class="drop-title">Drag & drop your PDF resume</p>
+            <p class="drop-sub">or <span class="browse-link">click to browse</span></p>
+            <div class="file-selected" id="fileName"></div>
+          </div>
         </div>
 
-        <select name="role" required>
-          <option value="">Select Target Role</option>
-          <!-- <option>Web Developer</option>
-          <option>Software Engineer</option>
-          <option>Data Analyst</option>
-          <option>UI/UX Designer</option> -->
-          <option>Web Developer</option>
-          <option>Frontend Developer</option>
-          <option>Backend Developer</option>
-          <option>Full Stack Developer</option>
-          <option>Software Engineer</option>
-          <option>Mobile App Developer</option>
+        <div class="field-group">
+          <label class="field-label" for="roleSelect">Target Role</label>
+          <div class="select-wrap">
+            <select id="roleSelect" name="role" required>
+              <option value="">Choose your target position…</option>
+              <optgroup label="⚙ Development">
+                <option>Web Developer</option>
+                <option>Frontend Developer</option>
+                <option>Backend Developer</option>
+                <option>Full Stack Developer</option>
+                <option>Software Engineer</option>
+                <option>Mobile App Developer</option>
+              </optgroup>
+              <optgroup label="📊 Data & AI">
+                <option>Data Analyst</option>
+                <option>Data Scientist</option>
+                <option>Machine Learning Engineer</option>
+                <option>AI Engineer</option>
+              </optgroup>
+              <optgroup label="🎨 Design">
+                <option>UI/UX Designer</option>
+                <option>Product Designer</option>
+                <option>Graphic Designer</option>
+              </optgroup>
+              <optgroup label="☁ Cloud & DevOps">
+                <option>DevOps Engineer</option>
+                <option>Cloud Engineer</option>
+              </optgroup>
+              <optgroup label="🔐 Security & QA">
+                <option>Cyber Security Analyst</option>
+                <option>QA Engineer</option>
+              </optgroup>
+              <optgroup label="📋 Management">
+                <option>Product Manager</option>
+                <option>Project Manager</option>
+              </optgroup>
+            </select>
+            <svg class="select-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
 
-          <!-- Data & AI -->
-          <option>Data Analyst</option>
-          <option>Data Scientist</option>
-          <option>Machine Learning Engineer</option>
-          <option>AI Engineer</option>
-
-          <!-- Design -->
-          <option>UI/UX Designer</option>
-          <option>Product Designer</option>
-          <option>Graphic Designer</option>
-
-          <!-- Cloud & DevOps -->
-          <option>DevOps Engineer</option>
-          <option>Cloud Engineer</option>
-
-          <!-- Security & QA -->
-          <option>Cyber Security Analyst</option>
-          <option>QA Engineer</option>
-
-          <!-- Management -->
-          <option>Product Manager</option>
-          <option>Project Manager</option>
-        </select>
-
-        <button class="analyze-btn" type="submit">
-          Analyze Resume
+        <button class="btn-analyze" type="submit">
+          <span>Analyze My Resume</span>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
+
       </form>
-    </div>
+    </section>
 
-    <div class="loader-wrapper" id="loader">
-      <div class="loader">
-        <div class="loader-ring"></div>
-        <div class="loader-ring"></div>
-        <div class="loader-ring"></div>
+    <!-- LOADER -->
+    <div class="loader-section" id="loader">
+      <div class="loader-rings">
+        <div class="lr lr1"></div>
+        <div class="lr lr2"></div>
+        <div class="lr lr3"></div>
+        <div class="lr-center"></div>
       </div>
-      <div class="loader-text">Analyzing your resume...</div>
+      <p class="loader-headline">Analyzing your resume…</p>
+      <div class="loader-steps">
+        <span class="lstep active" id="step1">Parsing content</span>
+        <span class="lstep-sep">›</span>
+        <span class="lstep" id="step2">Matching skills</span>
+        <span class="lstep-sep">›</span>
+        <span class="lstep" id="step3">Building report</span>
+      </div>
     </div>
 
+    <!-- RESULTS -->
     <div class="results" id="results">
-      <div class="score-section">
-        <div class="score-circle">
-          <svg>
+
+      <div class="score-hero">
+        <div class="ring-area">
+          <svg class="score-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#5865f2;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+              <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a78bfa"/>
+                <stop offset="100%" stop-color="#fb7185"/>
               </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
             </defs>
-            <circle class="score-bg" cx="90" cy="90" r="85"></circle>
-            <circle class="score-progress" cx="90" cy="90" r="85" id="progressCircle"></circle>
+            <circle class="ring-track" cx="100" cy="100" r="88"/>
+            <circle class="ring-progress" cx="100" cy="100" r="88" id="progressCircle" filter="url(#glow)"/>
           </svg>
-          <div class="score-text" id="scoreText">0%</div>
+          <div class="score-center">
+            <span class="score-num" id="scoreText">0</span><span class="score-pct">%</span>
+            <span class="score-lbl">ATS Score</span>
+          </div>
         </div>
-        <div class="score-label">
-          ATS Compatibility Score (<span id="matchPercent">0%</span>)
+
+        <div class="score-info">
+          <p class="results-eyebrow">Analysis Complete</p>
+          <h2 class="results-heading">Your Resume Report</h2>
+          <p class="results-desc">Performance breakdown for <strong id="roleDisplay">your target role</strong></p>
+          <div class="stat-strip">
+            <div class="stat">
+              <span class="stat-n" id="matchedCount">0</span>
+              <span class="stat-l">Matched</span>
+            </div>
+            <span class="stat-bar"></span>
+            <div class="stat">
+              <span class="stat-n missing" id="missingCount">0</span>
+              <span class="stat-l">Missing</span>
+            </div>
+            <span class="stat-bar"></span>
+            <div class="stat">
+              <span class="stat-n rate" id="matchPercent">0%</span>
+              <span class="stat-l">Match Rate</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="info-grid">
-        <div class="info-card">
-          <h3>✅ Matched Skills</h3>
-          <div class="tags" id="matchedSkills"></div>
+      <div class="result-grid">
+        <div class="rcard rcard-green">
+          <div class="rcard-head">
+            <span class="rcard-icon ri-green">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <h3>Matched Skills</h3>
+          </div>
+          <div class="tag-cloud" id="matchedSkills"></div>
         </div>
 
-        <div class="info-card">
-          <h3>⚠ Missing Skills</h3>
-          <div class="tags" id="missingSkills"></div>
-        </div>
-
-        <div class="info-card" style="grid-column:1/-1">
-          <h3>💡 Suggestions</h3>
-          <ul class="suggestions-list" id="suggestions"></ul>
+        <div class="rcard rcard-amber">
+          <div class="rcard-head">
+            <span class="rcard-icon ri-amber">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/><circle cx="12" cy="12" r="10"/></svg>
+            </span>
+            <h3>Missing Skills</h3>
+          </div>
+          <div class="tag-cloud" id="missingSkills"></div>
         </div>
       </div>
 
-      <button
-        id="downloadPdf"
-        type="button"
-        class="analyze-btn"
-        style="display:none; margin-top:40px;"
-      >
-        📥 Download ATS Report (PDF)
-      </button>
+      <div class="rcard rcard-wide">
+        <div class="rcard-head">
+          <span class="rcard-icon ri-teal">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </span>
+          <h3>Smart Suggestions</h3>
+        </div>
+        <ul class="sug-list" id="suggestions"></ul>
+      </div>
+
+      <div class="action-row">
+        <button id="downloadPdf" class="btn-dl" style="display:none">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF Report
+        </button>
+        <button id="retryBtn" class="btn-retry">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.85"/></svg>
+          Analyze Another
+        </button>
+      </div>
     </div>
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
